@@ -5,6 +5,6 @@ app.get('/', function (req, res) {
   res.send('OpenScopeServer');
 });
 
-app.listen(3000, function () {
-  console.log('OpenScopeServer listening on port 3000!');
+app.listen(80, function () {
+  console.log('OpenScopeServer listening on port 80!');
 });
