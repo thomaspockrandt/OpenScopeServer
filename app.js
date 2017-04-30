@@ -8,7 +8,7 @@ app.get('/', function (req, res) {
 app.get('/document/:uid', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
     var json = {
-      "comments": 3
+      "comments_count": 3
     };
     res.send(JSON.stringify(json);
 });
