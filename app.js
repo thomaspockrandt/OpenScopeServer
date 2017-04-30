@@ -9,6 +9,14 @@ app.get('sso', function(req, res) {
   // TODO: add single sign on for Office 365
 });
 
+app.get('/document/:uid/status', function(req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    var json = {
+      "status": 1
+    };
+    res.send(JSON.stringify(json);
+});
+
 app.get('/document/:uid', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
     var json = {
