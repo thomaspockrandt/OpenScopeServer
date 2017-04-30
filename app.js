@@ -1,51 +1,60 @@
 var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+
+var routes = require('./routes/index');
+var users = require('./routes/users');
+
 var app = express();
 
-app.get('/', function (req, res) {
-  res.send('OpenScopeServer');
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', routes);
+app.use('/users', users);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
-app.get('sso', function(req, res) {
-  // TODO: add single sign on for Office 365
+// error handlers
+
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
+    });
+  });
+}
+
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
 });
 
-app.get('/document/:uid', function(req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    var json = {
-      "comments_count": 3
-    };
-    res.send(JSON.stringify(json);
-});
 
-app.get('/document/:uid/status', function(req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    var json = {
-      "status": 1
-    };
-    res.send(JSON.stringify(json);
-});
-
-app.get('/document/:uid/comments', function(req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    var json = [
-      {
-        "user": 12345,
-        "comment": "This looks interesting.",
-        "point": {"x": 2234, "y": 5431}
-      }, {
-        "user": 54321,
-        "comment": "What do you think?",
-        "point": {"x": 8564, "y": 4322}
-      }, {
-        "user": 3213,
-        "comment": "What do you think?",
-        "point": {"x": 12542, "y": 54231}
-      }
-    ];
-    res.send(JSON.stringify(json);
-});
-
-var port = process.env.port || 3000;
-app.listen(port, function () {
-  console.log("OpenScopeServer listening on port " + port);
-});
+module.exports = app;
