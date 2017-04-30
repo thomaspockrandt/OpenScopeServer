@@ -27,7 +27,7 @@ app.get('/document/:uid/comments', function(req, res) {
       }, {
         "user": 3213,
         "comment": "What do you think?",
-        "point": {"x": 8564, "y": 4322}
+        "point": {"x": 12542, "y": 54231}
       }
     ];
     res.send(JSON.stringify(json);
