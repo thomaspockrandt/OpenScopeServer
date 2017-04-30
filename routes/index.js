@@ -47,10 +47,4 @@ router.get('/document/:uid/comments', function(req, res) {
     res.json(json);
 });
 
-router.post('/document/:uid/comments', function(req, res) {
-    var user = req.body.user;
-    var description = req.body.description,
-    var point = req.body.point;
-});
-
 module.exports = router;
