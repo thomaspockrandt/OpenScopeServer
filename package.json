@@ -10,5 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "express": ">= 1.2.0"
+  },
+  "scripts": {
+    "start": "node app.js"
   }
 }
