@@ -5,6 +5,14 @@ app.get('/', function (req, res) {
   res.send('OpenScopeServer');
 });
 
+app.get('/document/:uid', function(req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    var json = {
+      "comments": 3
+    };
+    res.send(JSON.stringify(json);
+});
+
 app.get('/document/:uid/comments', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
     var json = [
