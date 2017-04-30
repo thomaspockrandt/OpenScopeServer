@@ -7,7 +7,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/sso', function(req, res, next) {
-  res.render('json', { json: JSON.stringify({"status": 0}) });
+  var json = {"status": 0};
+  res.json(json);
 });
 
 module.exports = router;
