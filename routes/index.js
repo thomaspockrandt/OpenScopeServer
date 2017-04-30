@@ -40,7 +40,7 @@ router.get('/document/:uid/comments', function(req, res) {
         "point": {"x": 8564, "y": 4322}
       }, {
         "user": 3213,
-        "comment": "What do you think?",
+        "comment": "This looks fine.",
         "point": {"x": 12542, "y": 54231}
       }
     ];
