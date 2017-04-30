@@ -5,6 +5,10 @@ app.get('/', function (req, res) {
   res.send('OpenScopeServer');
 });
 
+app.get('sso', function(req, res) {
+  // TODO: add single sign on for Office 365
+});
+
 app.get('/document/:uid', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
     var json = {
